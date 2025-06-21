@@ -17,8 +17,7 @@ results = sentiment_analyzer(df['clean_text'].tolist())
 df['label'] = [1 if r['label'] == 'POSITIVE' else 0 for r in results]
 
 # Stampa qualche esempio
-print(df[['clean_text', 'label']].head())
+#print(df[['clean_text', 'label']].head())
 
-
-#print(df['clean_text'].head(10))
+y_bert = df['label']
 

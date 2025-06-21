@@ -21,7 +21,10 @@ df = get_cleaned_dataframe(str(DATA_PATH))
 df['label'] = df['clean_text'].apply(lexicon_label)
 
 # Stampa i primi 20 commenti con label
-for i, row in df.head(20).iterrows():
+"""for i, row in df.head(20).iterrows():
     print(f"\n🗨️  Commento originale: {row['text']}")
     print(f"🧼 Commento pulito:     {row['clean_text']}")
-    print(f"🏷️  Etichetta:           {row['label']}")
+    print(f"🏷️  Etichetta:           {row['label']}")"""
+
+
+y_dict = df['label']

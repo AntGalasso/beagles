@@ -4,25 +4,9 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from transformers import pipeline
+from preprocessing import get_cleaned_dataframe
 
-# Download risorse nltk necessarie
-nltk.download('punkt')
-nltk.download('stopwords')
-
-# Carica il file JSON (assumendo formato JSON Lines)
-df = pd.read_json("comments.json", lines=True)
-
-# Preprocessing testo
-def clean_text(text):
-    text = re.sub(r"http\S+", "", text)  # rimuove link
-    text = re.sub(r"[^a-zA-Zàèéìòùç ]", "", text)  # lascia solo lettere e spazi
-    text = text.lower()
-    tokens = word_tokenize(text)
-    tokens = [t for t in tokens if t not in stopwords.words("english")]  # stopwords inglesi
-    return " ".join(tokens)
-
-df['clean_text'] = df['text'].apply(clean_text)
-
+df = get_cleaned_dataframe()
 # Carica pipeline di sentiment analysis (modello BERT fine-tuned)
 sentiment_analyzer = pipeline("sentiment-analysis")
 
